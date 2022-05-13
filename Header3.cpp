@@ -83,6 +83,35 @@ void q3::BinaryTree::distructtree(Node* dek)
 	delete temp;
 }
 
+bool q3::BinaryTree::evalute(Node* node)
+{
+	if (node == nullptr)
+		return 0;
+	int x = evalute(node->left);
+	int y = evalute(node->right);
+	int result = 0;
+
+	if (node->value == '0')
+		return 0;
+	else if (node->value == '1')
+		return 1;
+	else if (node->value == '&')
+		result = x && y ? 1 : 0;
+
+	else if (node->value == '|')
+		result = x || y ? 1 : 0;
+
+	else if (node->value == '-') {
+		if (x == 1)
+			result = 0;
+		else
+			result = 1;
+	}
+	return result;
+
+
+}
+
 void q3::BinaryTree::build_expression_tree(int size, char* s)
 {
 	char k;
@@ -114,11 +143,23 @@ void q3::BinaryTree::build_expression_tree(int size, char* s)
 
 	std::cout << '\n';
 	std::cout << '\n';
+	std::cout << "Look of tree before simplifying:       ";
 	inorder(z);
 	std::cout << '\n';
 	simplify_tree(z);
+	std::cout << '\n';
+	std::cout << '\n';
+	std::cout << '\n';
+	std::cout << "Look of tree after simplifying:         ";
 	inorder(z);
 	std::cout << '\n';
+	std::cout << '\n';
+	std::cout << "---------------------------------------------";
+	std::cout << '\n';
+	std::cout << "Result using tree after simplifying:       ";
+	std::cout << evalute(z);
+	std::cout << '\n';
+	std::cout << "---------------------------------------------";
 	std::cout << '\n';
 
 	return;
@@ -197,6 +238,7 @@ void q3::BinaryTree::create_rpn(char* func, int size)
 	build_expression_tree(index_finish, finish);
 	std::cout << "\n";
 	std::cout << "\n";
+	std::cout << "If rpn version :     ";
 	functionate(1, finish, index_finish);
 
 }

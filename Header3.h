@@ -17,6 +17,7 @@ namespace q3 {
 		void inorder(Node*);
 		void simplify_tree(Node*);
 		void distructtree(Node*);
+		bool evalute(Node*);
 
 	};
 	template <typename T> struct Stack {
