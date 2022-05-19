@@ -89,17 +89,21 @@ bool q3::BinaryTree::evalute(Node* node)
 		return 0;
 	int x = evalute(node->left);
 	int y = evalute(node->right);
+
 	int result = 0;
 
 	if (node->value == '0')
 		return 0;
 	else if (node->value == '1')
 		return 1;
+	else if (node->value == 'x')
+		return 1;
 	else if (node->value == '&')
 		result = x && y ? 1 : 0;
 
-	else if (node->value == '|')
+	else if (node->value == '|') {
 		result = x || y ? 1 : 0;
+	}
 
 	else if (node->value == '-') {
 		if (x == 1)
